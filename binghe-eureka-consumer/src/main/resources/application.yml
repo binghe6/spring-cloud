@@ -1,0 +1,31 @@
+server:
+  #服务端口
+  port: 8081 
+
+spring: 
+  application: 
+    #指定服务名 
+    name: binghe-eureka-consumer 
+
+eureka:
+  client:
+    #是否将自己注册到Eureka服务中(这个服务没有被别人调用，可以不用注册到注册中心)
+    registerWithEureka: true 
+    #是否从Eureka中获取注册信息
+    fetchRegistry: true 
+    serviceUrl: 
+      #Eureka客户端与Eureka服务端进行交互的地址（往有登陆权限的注册中心注册服务需要在IP前面加上user:password@）
+      defaultZone: http://binghe:binghe@127.0.0.1:6868/eureka/,http://bingyu:bingyu@127.0.0.1:6869/eureka/
+
+#此处binghe-eureka-provider为服务提供方的服务名
+binghe-eureka-provider:
+  ribbon:
+    #设置负载均衡的调用方式为随机
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+    #设置负载均衡的调用方式为轮循
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
+
+#开启Feign依赖的Hystrix
+feign:
+  hystrix:
+    enabled: true

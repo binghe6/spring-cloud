@@ -1,0 +1,23 @@
+server:
+  #服务端口
+  port: 6869
+
+eureka:
+  client:
+    #是否将自己注册到Eureka服务中，本身就是所有无需注册(如果是构建eureka集群的话，是需要注册的)
+    registerWithEureka: true 
+    #是否从Eureka中获取注册信息(如果是构建eureka集群的话，是需要获取注册信息的)
+    fetchRegistry: true 
+    serviceUrl: 
+      #Eureka客户端与Eureka服务端进行交互的地址
+      defaultZone: http://binghe:binghe@127.0.0.1:6868/eureka/
+      
+spring:
+  application: 
+    #指定服务名 
+    name: binghe-eureka-server
+  security: 
+    #配置用户的账号信息
+    user: 
+      name: bingyu
+      password: bingyu
